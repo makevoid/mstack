@@ -1,0 +1,11 @@
+{
+  "name": "mstack",
+  "owner": { "name": "makevoid", "url": "https://github.com/makevoid" },
+  "plugins": [
+    {
+      "name": "mstack",
+      "source": "./",
+      "description": "One big agent, managed context, the best model you can afford."
+    }
+  ]
+}

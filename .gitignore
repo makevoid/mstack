@@ -1,1 +1,21 @@
- 
+# mstack session memory is local to each checkout
+docs/mstack/sessions/
+
+# Benchmark runs. They default to ~/.cache/mstack/benchmark, outside the repo;
+# these cover a run directory pointed back inside it.
+benchmark/runs/
+runs/
+stream.jsonl
+stderr.log
+run.json
+mstack-home/
+
+# Local noise
+*.log
+*.tmp
+.DS_Store
+.bundle/
+vendor/bundle/
+.env
+.env.*
+.claude/settings.local.json
