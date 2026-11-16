@@ -4,7 +4,7 @@ Recorded runs of the [Tasklane benchmark](benchmark.md). Costs are the API-equiv
 
 ## run1: 2026-11-16, Fable 5.2 at high effort, 100k cap
 
-One headless session, mstack 0.1.0, `autoCompactWindow` and `context.cap_tokens` at 100,000. The prompt never mentions mstack.
+One headless session on the pre-release code that became mstack 0.3.0, `autoCompactWindow` and `context.cap_tokens` at 100,000. The prompt never mentions mstack.
 
 **Result: 16 of 16 checks passed.**
 

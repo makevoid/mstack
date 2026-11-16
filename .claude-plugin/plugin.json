@@ -1,6 +1,6 @@
 {
   "name": "mstack",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "One big agent instead of a swarm: single-agent mode, automatic session memory that survives compaction at a 300k context cap, crystallized core memories, and a model policy that keeps you on the best model your limits can afford.",
   "author": {
     "name": "makevoid",
