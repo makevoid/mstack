@@ -8,7 +8,7 @@ RSpec.describe Mstack::Launcher do
   it "installs an executable script that runs the plugin's status line" do
     expect(launcher.install!).to be(true)
     expect(File.executable?(launcher.path)).to be(true)
-    expect(File.read(launcher.path)).to include(%(exec "/plugins/mstack/0.1.0/bin/mstack" statusline "$@"))
+    expect(File.read(launcher.path)).to include(%(exec /plugins/mstack/0.1.0/bin/mstack statusline "$@"))
   end
 
   it "is idempotent, and follows the plugin when it moves" do
@@ -26,6 +26,23 @@ RSpec.describe Mstack::Launcher do
 
     expect(status).to be_success
     expect(out).to start_with("Fable 5.2 | [..........] 0/300k")
+  end
+
+  it "treats shell metacharacters in the plugin path literally and preserves arguments" do
+    plugin_root = File.join(@sandbox, %q{plugin $HOME $(touch injected) `touch injected-backtick` "quoted" 'single'})
+    FileUtils.mkdir_p(File.join(plugin_root, "bin"))
+    executable = File.join(plugin_root, "bin", "mstack")
+    File.write(executable, "#!/bin/sh\nprintf '<%s>\\n' \"$@\"\n")
+    File.chmod(0o755, executable)
+    launcher = described_class.new(root: plugin_root)
+    launcher.install!
+
+    out, err, status = Open3.capture3(launcher.path, "--wrap", "command with spaces", chdir: @sandbox)
+
+    expect(status).to be_success, err
+    expect(out).to eq("<statusline>\n<--wrap>\n<command with spaces>\n")
+    expect(File.exist?(File.join(@sandbox, "injected"))).to be(false)
+    expect(File.exist?(File.join(@sandbox, "injected-backtick"))).to be(false)
   end
 end
 

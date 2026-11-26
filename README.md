@@ -102,12 +102,17 @@ Full reference: [docs/configuration.md](docs/configuration.md).
 
 ## Development
 
+Use Ruby 3.1+ and Bundler. Install the development gems before running the tests; the plugin itself needs no extra gems.
+
 ```bash
-rake spec          # the Ruby library, hooks and CLI
-rake validate      # the plugin manifest
-rake benchmark:run # one headless session builds the benchmark app (spends plan usage)
-rake benchmark:verify
+bundle install
+bundle exec rake spec          # the Ruby library, hooks and CLI
+bundle exec rake validate      # the plugin manifest (requires Claude Code on PATH)
+bundle exec rake benchmark:run # one headless session builds the benchmark app (spends plan usage)
+bundle exec rake benchmark:verify
 ```
+
+CI is manual-only: run the CI workflow from GitHub Actions when needed. It tests the latest stable Ruby; pushes and pull requests do not trigger it automatically.
 
 Layout:
 

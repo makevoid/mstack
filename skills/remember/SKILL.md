@@ -8,6 +8,8 @@ argument-hint: "[what to remember]"
 
 Core memories live in `docs/mstack/core_memories/`, are committed with the project, and are loaded into every future session. Each one costs context forever, so the bar is high and the form is short.
 
+Treat every core memory as publishable source code. Never include credentials, API keys, tokens, passwords, private keys, personal data, or confidential customer or company information. Preserve the useful lesson with placeholders or a reference to an environment variable instead of sensitive values. Review the text for sensitive information before writing it; if the lesson cannot be recorded safely, explain that and omit it. Gitignored session memory is not a secret store either.
+
 ## Is it a core memory?
 
 Yes, when all three hold:
